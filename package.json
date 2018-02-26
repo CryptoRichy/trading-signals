@@ -1,0 +1,31 @@
+{
+  "name": "trading-signals",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "server": "nodemon app.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "Trading",
+    "Signals",
+    "Notification"
+  ],
+  "author": "Christian Barrios",
+  "license": "MIT",
+  "dependencies": {
+    "check-markets-crypto": "^1.0.1",
+    "concurrently": "^3.5.1",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.14.12",
+    "standard": "^10.0.3"
+  }
+}
