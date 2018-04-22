@@ -16,9 +16,6 @@ class App extends Component {
       "exchanges": []
     }
     this.socket = io.connect(this.props.api)
-  }
-
-  componentDidMount() {
     this.socket.on('all', (data) => this.updateNotifications(data))
     this.socket.on('connect_error', () => {
       window.Materialize.toast('Servidor de notificaciones no disponible!', 3000, 'rounded')
@@ -28,23 +25,22 @@ class App extends Component {
 
   updateNotifications(data) {
     this.setState((prevState, props) => {
-      let newNotifications = [...prevState.notifications]
-      newNotifications.unshift(data)
+      let notifications = [...prevState.notifications]
+      notifications.unshift(data)
       return {
-        'notifications': newNotifications
+        notifications: notifications
       }
     })
   }
 
   resetWithTime() {
-    if (this.timerID) clearInterval(this.timerID)
     this.timerID = setInterval(() => {
       this.setState((prevState, props) => {
         let now = Date.now()
-        let tempNotifications = prevState.notifications.filter((notification) =>
-          Date.parse(notification.time) > now - (prevState.time * 1000 * 60)
+        let notifications = prevState.notifications.filter((notification) =>
+          Date.parse(notification.time.replace(/-/g, "/")) > (now - (prevState.time * 1000 * 60))
         )
-        return { "notifications": tempNotifications }
+        return { "notifications": notifications }
       })
     }, 1000)
   }

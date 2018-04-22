@@ -5,7 +5,7 @@ let Table = function Table(props) {
   let content = props.data.map((market, index) => (
     <div className="Table" key={index}>
       <h5>{market.current.symbol}</h5>
-      <table className="bordered">
+      <table className="responsive-table bordered">
         <thead>
           <tr>
             <th>Campo</th>
@@ -16,13 +16,15 @@ let Table = function Table(props) {
 
         <tbody>
           {
-            Object.keys(market.current).filter((value) => value !== 'info').map((value) => 
-              <tr key={value}>
-                <td>{value}</td>
-                <td>{market.last[value]}</td>
-                <td>{market.current[value]}</td>
-              </tr>
-            )
+            Object.keys(market.current)
+	     .filter((value) => value !== 'info' && value !== 'symbol' && value !== 'timestamp' && value !== 'datetime' && value !== 'baseVolume')
+             .map((value) => 
+                <tr key={value}>
+                  <td>{value}</td>
+                  <td>{market.last[value]}</td>
+                  <td>{market.current[value]}</td>
+                </tr>
+              )
           }
         </tbody>
       </table>

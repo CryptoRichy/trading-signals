@@ -6,7 +6,8 @@ let config = {
     "24hr-high",
     "down-high-15%",
     "down-last-5%",
-    "up-last-3%"
+    "up-last-3%",
+    "crash"
   ],
   "exchanges": [
     "binance",
