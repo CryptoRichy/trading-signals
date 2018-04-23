@@ -26,7 +26,7 @@ class App extends Component {
   updateNotifications(data) {
     this.setState((prevState, props) => {
       let notifications = [...prevState.notifications]
-      notifications.unshift(data)
+      notifications.push(data)
       return {
         notifications: notifications
       }
@@ -42,7 +42,7 @@ class App extends Component {
         )
         return { "notifications": notifications }
       })
-    }, 1000)
+    }, 60000)
   }
 
   reset() {
